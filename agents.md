@@ -69,3 +69,67 @@ This webinar software platform will integrate industry-leading services to enabl
 ## Conclusion
 
 This plan outlines the integration of Mux, Clerk, Resend, and Knock to deliver a robust webinar software solution. Attention to seamless service integration, security, and user experience will drive the success of the webinar system.
+## App Flow
+```mermaid
+flowchart LR
+    A[Visitor lands on site] --> B[Sign up / Sign in via Clerk]
+    B --> C[Dashboard]
+    C -->|Create Webinar| D[Create Webinar Form]
+    D --> E[Mux Stream Setup]
+    E --> F[Webinar Live]
+    F --> G[Knock & Resend Notifications]
+    F --> H[Audience Joins Webinar]
+    H --> I[Q&A / Chat]
+    F --> J[End Stream]
+    J --> K[Replay Available]
+```
+
+## Database Schema
+```mermaid
+erDiagram
+    users {
+        serial id PK
+        text name
+        text email
+        timestamp created_at
+    }
+    webinars {
+        serial id PK
+        text title
+        text description
+        integer host_id FK
+        timestamp scheduled_at
+    }
+    streams {
+        serial id PK
+        integer webinar_id FK
+        text mux_stream_key
+        text status
+    }
+    attendees {
+        serial id PK
+        integer webinar_id FK
+        integer user_id FK
+    }
+    notifications {
+        serial id PK
+        integer user_id FK
+        text type
+        text message
+        timestamp created_at
+    }
+    users ||--o{ webinars : hosts
+    users ||--o{ attendees : participates
+    webinars ||--o{ streams : has
+    webinars ||--o{ attendees : invites
+    users ||--o{ notifications : receives
+```
+
+## Pages
+- Landing / Upcoming Webinars
+- Sign In / Sign Up
+- Dashboard
+- Create Webinar
+- Webinar Details
+- Live Stream
+- Replay / Past Webinars

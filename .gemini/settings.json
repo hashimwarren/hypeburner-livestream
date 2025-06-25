@@ -1,0 +1,9 @@
+{
+  "mcp_servers": [
+    {
+      "name": "example-server",
+      "url": "http://localhost:8080",
+      "enabled": true
+    }
+  ]
+}

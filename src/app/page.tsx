@@ -6,6 +6,10 @@ const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), {
   ssr: false,
 });
 
+const playbackId =
+  process.env.NEXT_PUBLIC_MUX_PLAYBACK_ID ||
+  "JjXrHD59Y8dY01lO8IWBYO4FaV1k01b8";
+
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -58,7 +62,7 @@ export default function Home() {
                 </div>
               </div>
               <MuxPlayer
-                playbackId="JjXrHD59Y8dY01lO8IWBYO4FaV1k01b8"
+                playbackId={playbackId}
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
               />
             </div>

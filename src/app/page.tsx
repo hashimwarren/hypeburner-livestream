@@ -1,5 +1,10 @@
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
+
+const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -52,11 +57,8 @@ export default function Home() {
                   </a>
                 </div>
               </div>
-              <Image
-                src="/placeholder.svg"
-                width="550"
-                height="550"
-                alt="Hero"
+              <MuxPlayer
+                playbackId="JjXrHD59Y8dY01lO8IWBYO4FaV1k01b8"
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
               />
             </div>

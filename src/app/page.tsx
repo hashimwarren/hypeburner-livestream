@@ -1,10 +1,6 @@
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
-
-const MuxPlayer = dynamic(() => import("@mux/mux-player-react"), {
-  ssr: false,
-});
+import MuxPlayerClient from "@/components/mux-player-client";
 
 const playbackId =
   process.env.NEXT_PUBLIC_MUX_PLAYBACK_ID ||
@@ -61,7 +57,7 @@ export default function Home() {
                   </a>
                 </div>
               </div>
-              <MuxPlayer
+              <MuxPlayerClient
                 playbackId={playbackId}
                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
               />
@@ -167,7 +163,7 @@ export default function Home() {
   );
 }
 
-function MountainIcon(props) {
+function MountainIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
